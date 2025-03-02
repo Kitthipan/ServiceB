@@ -1,0 +1,3 @@
+com\demo\ServiceB\ServletInitializer.class
+com\demo\ServiceB\controller\ServiceBController.class
+com\demo\ServiceB\ServiceBApplication.class
