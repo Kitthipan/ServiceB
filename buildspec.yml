@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 060795901660.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo Building Docker Image...
+      - docker build -t serviceB .
+      - docker tag serviceB:latest 060795901660.dkr.ecr.us-east-1.amazonaws.com/serviceB:latest
+  post_build:
+    commands:
+      - echo Pushing Docker Image to ECR...
+      - docker push 060795901660.dkr.ecr.us-east-1.amazonaws.com/serviceB:latest
+artifacts:
+  files:
+    - buildspec.yml
